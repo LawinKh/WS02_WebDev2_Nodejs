@@ -64,7 +64,7 @@ const server = http.createServer((req, res) => {
         // Handle requests for CSS files from /styles/ folder
         // Uncomment and complete the security check:
         
-        /*
+       
         else if (req.url.startsWith('/styles/')) {
             filePath = path.join(PUBLIC_DIR, req.url);
             
@@ -75,7 +75,7 @@ const server = http.createServer((req, res) => {
                 return;
             }
         }
-        */
+   
         else {
             // No route matched -> 404
             handle404(res);
