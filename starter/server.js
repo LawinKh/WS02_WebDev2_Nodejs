@@ -50,11 +50,14 @@ const server = http.createServer((req, res) => {
         } 
         // TODO: Add 'else if' for '/about' -> 'about.html'
         // Example: else if (req.url === '/about') { filePath = path.join(PUBLIC_DIR, 'about.html'); }
-        
+        else if (req.url === '/about') {
+            filePath = path.join(PUBLIC_DIR, 'about.html');
+            }
         
         // TODO: Add 'else if' for '/contact' -> 'contact.html'
-        
-        
+        else if (req.url === '/contact') {
+        filePath = path.join(PUBLIC_DIR, 'contact.html');
+} 
         // ========================================
         // TODO: Task 4 - Serve CSS Files
         // ========================================
@@ -169,9 +172,14 @@ function handleServerError(res, error) {
 // ========================================
 // Start listening for requests on PORT 3000
 server.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
     // TODO: Log a message to indicate the server is running
     // Example: console.log(`Server is running on http://localhost:${PORT}`);
     
+    console.log('Available routes:');
+    console.log('  GET /              -> index.html');
+    console.log('  GET /about         -> about.html');
+    console.log('  GET /contact       -> contact.html');
     
     // Bonus: You can also log the available routes for better user experience
     /*
