@@ -24,7 +24,7 @@ const server = http.createServer((req, res) => {
         // Create a /api/time endpoint that returns current date/time as JSON
         // Uncomment and complete the code below:
         
-        /*
+   
         if (req.url === '/api/time' && req.method === 'GET') {
             const currentDateTime = new Date().toISOString();
             res.writeHead(200, { 'Content-Type': 'application/json' });
@@ -34,7 +34,7 @@ const server = http.createServer((req, res) => {
             }));
             return;
         }
-        */
+
 
 
         // ========================================
@@ -135,9 +135,7 @@ function handle404(res) {
     // TODO: Use fs.readFile() to read notFoundPath
     // If successful: Send 404 status with the HTML content
     // If failed: Send 404 status with plain text "404 - Page Not Found"
-    
     // Example structure:
-    /*
     fs.readFile(notFoundPath, (err, content) => {
         if (err) {
             res.writeHead(404, { 'Content-Type': 'text/plain' });
@@ -147,19 +145,28 @@ function handle404(res) {
             res.end(content, 'utf-8');
         }
     });
-    */
+
 }
 
 // Function to handle 500 errors (Server Error)
 function handleServerError(res, error) {
     // Step 1: Log the error to the console
     // TODO: Use console.error() to log the error
-    
+    console.error('Server error:', error);
     
     // Step 2: Create the path to 500.html
     const serverErrorPath = path.join(PUBLIC_DIR, '500.html');
     
     // Step 3: Try to read and serve the 500.html file
+    fs.readFile(serverErrorPath, (err, content) => {
+        if (err) {
+            res.writeHead(500, { 'Content-Type': 'text/plain' });
+            res.end('500 - Internal Server Error');
+        } else {
+            res.writeHead(500, { 'Content-Type': 'text/html' });
+            res.end(content, 'utf-8');
+        }
+    });
     // TODO: Similar to handle404, read serverErrorPath and serve it
     // If successful: Send 500 status with the HTML content
     // If failed: Send 500 status with plain text "500 - Internal Server Error"
